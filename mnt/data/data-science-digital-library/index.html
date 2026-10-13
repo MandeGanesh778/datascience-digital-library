@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Science Digital Library</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app-shell">
+<header class="topbar">
+  <a class="brand" href="#" data-page="home"><span class="brand-mark">◈</span><span>DATA SCIENCE DIGITAL LIBRARY</span></a>
+  <button class="mobile-menu" id="mobileMenu">☰</button>
+  <nav class="nav" id="nav">
+    <button class="nav-link active" data-page="home">⌂ <span>Home</span></button>
+    <button class="nav-link" data-page="student">▣ <span>Student ID</span></button>
+    <button class="nav-link" data-page="faculty">▣ <span>Faculty ID</span></button>
+    <button class="nav-link" data-page="experiments">⚗ <span>Experiments</span></button>
+    <button class="nav-link" data-page="modules">▤ <span>Modules</span></button>
+    <button class="nav-link" data-page="tools">⌘ <span>Tools</span></button>
+    <button class="nav-link" data-page="resources">▥ <span>Resources</span></button>
+  </nav>
+  <button class="icon-button" id="themeToggle">☼</button>
+</header>
+
+<main class="main-content">
+<section class="page active" id="page-home">
+  <div class="hero">
+    <div class="hero-icon">◈</div><div>
+      <p class="eyebrow">ACADEMIC WORKSPACE</p>
+      <h1>Data Science Digital Library</h1>
+      <p class="hero-copy">Store your laboratory experiments, course modules, topics, IDs, tools, and learning resources in one place.</p>
+      <div class="hero-actions"><button class="btn primary" data-goto="experiments">＋ Add Experiment</button><button class="btn secondary" data-goto="modules">＋ Add Module</button></div>
+    </div>
+  </div>
+  <div class="stats-grid">
+    <article class="stat-card"><span class="stat-icon blue">⚗</span><div><p>Experiments</p><strong id="homeExperimentCount">0</strong></div></article>
+    <article class="stat-card"><span class="stat-icon purple">▤</span><div><p>Modules</p><strong id="homeModuleCount">0</strong></div></article>
+    <article class="stat-card"><span class="stat-icon green">⌘</span><div><p>Tools</p><strong id="homeToolsCount">0</strong></div></article>
+    <article class="stat-card"><span class="stat-icon orange">▥</span><div><p>Resources</p><strong id="homeResourceCount">0</strong></div></article>
+  </div>
+  <div class="section-heading"><div><p class="eyebrow">QUICK ACCESS</p><h2>Your Library</h2></div></div>
+  <div class="quick-grid">
+    <button class="quick-card" data-goto="student"><span class="quick-icon blue">▣</span><b>Student ID</b><small>Upload photo, edit, preview, save or delete your ID.</small><span class="arrow">↗</span></button>
+    <button class="quick-card" data-goto="faculty"><span class="quick-icon green">▣</span><b>Faculty ID</b><small>Keep faculty details and photo separately.</small><span class="arrow">↗</span></button>
+    <button class="quick-card" data-goto="modules"><span class="quick-icon purple">▤</span><b>Academic Modules</b><small>Add modules, topics and a PDF for every module.</small><span class="arrow">↗</span></button>
+    <button class="quick-card" data-goto="resources"><span class="quick-icon orange">▥</span><b>Resources</b><small>Manually add, edit and delete useful study resources.</small><span class="arrow">↗</span></button>
+  </div>
+  <p class="notice">ⓘ Data is saved in this browser on this device using local storage.</p>
+</section>
+
+<section class="page" id="page-student">
+  <div class="page-heading"><div class="heading-icon blue">▣</div><div><p class="eyebrow">PROFILE</p><h1>Student ID Card</h1><p>Upload an image, edit details, preview the card, or delete the saved student profile.</p></div></div>
+  <div class="id-layout">
+    <form class="panel form-panel" id="studentForm">
+      <h2>Student details</h2>
+      <label>Full name<input name="name" placeholder="Enter your name"></label>
+      <label>Program / Branch<input name="program" placeholder="B.Tech – CSE (Data Science)"></label>
+      <div class="form-row"><label>Section<input name="section" placeholder="01"></label><label>Batch / Year<input name="batch" placeholder="2028"></label></div>
+      <label>College name<input name="college" placeholder="Enter college name"></label>
+      <label>GitHub profile<input name="github" placeholder="https://github.com/username"></label>
+      <label>Student Image <small>PNG / JPG / WEBP</small><input id="studentImageInput" type="file" accept="image/png,image/jpeg,image/webp"></label>
+      <div class="form-actions"><button class="btn primary">Save Student ID</button><button class="btn secondary" type="button" id="studentEdit">Edit</button><button class="btn danger-outline" type="button" id="studentDelete">Delete</button></div>
+    </form>
+    <article class="id-card-wrap"><div class="id-card student-id-card" id="studentCard">
+      <div class="id-card-top"><span class="brand-mark">◈</span><span>STUDENT ID</span></div><div class="id-photo"><img id="studentPhoto"><span id="studentAvatar">MG</span></div>
+      <h2 id="cardName">Your Name</h2><p id="cardProgram">Your Program</p><div class="student-meta"><span>SECTION <b id="cardSection">—</b></span><span>BATCH <b id="cardBatch">—</b></span></div>
+      <div class="student-card-bottom"><span id="cardCollege">Your College</span><span>DATA SCIENCE</span></div>
+    </div><button class="btn secondary preview-btn" id="studentPreview" type="button">👁 Preview Student ID</button></article>
+  </div>
+</section>
+
+<section class="page" id="page-faculty">
+  <div class="page-heading"><div class="heading-icon green">▣</div><div><p class="eyebrow">FACULTY PROFILE</p><h1>Faculty ID Card</h1><p>Separate faculty image and details with independent save, edit, preview and delete controls.</p></div></div>
+  <div class="id-layout">
+    <form class="panel form-panel" id="facultyForm">
+      <h2>Faculty details</h2><label>Faculty Name<input name="name" placeholder="Enter faculty name"></label><label>Faculty ID<input name="facultyId" placeholder="FAC001"></label><label>Department<input name="department" placeholder="CSE / Data Science"></label><label>Designation<input name="designation" placeholder="Assistant Professor"></label><label>College name<input name="college" placeholder="Enter college name"></label>
+      <label>Faculty Image <small>PNG / JPG / WEBP</small><input id="facultyImageInput" type="file" accept="image/png,image/jpeg,image/webp"></label>
+      <div class="form-actions"><button class="btn primary">Save Faculty ID</button><button class="btn secondary" type="button" id="facultyEdit">Edit</button><button class="btn danger-outline" type="button" id="facultyDelete">Delete</button></div>
+    </form>
+    <article class="id-card-wrap"><div class="id-card faculty-id-card" id="facultyCard">
+      <div class="id-card-top"><span class="brand-mark">◈</span><span>FACULTY ID</span></div><div class="id-photo"><img id="facultyPhoto"><span id="facultyAvatar">F</span></div><h2 id="facultyCardName">Faculty Name</h2><p id="facultyCardDesignation">Designation</p>
+      <div class="faculty-meta"><span>ID <b id="facultyCardId">—</b></span><span id="facultyCardDepartment">Department</span></div><div class="student-card-bottom"><span id="facultyCardCollege">Your College</span><span>DATA SCIENCE</span></div>
+    </div><button class="btn secondary preview-btn" id="facultyPreview" type="button">👁 Preview Faculty ID</button></article>
+  </div>
+</section>
+
+<section class="page" id="page-experiments">
+  <div class="page-banner"><div class="heading-icon blue">⚗</div><div class="banner-copy"><h1>Lab Experiments</h1><p>Add experiments and keep sub-experiments connected to each parent.</p></div><button class="btn primary" id="addExperiment">＋ Add Experiment</button></div>
+  <div class="list-toolbar"><div><strong>Total Experiments: <span id="experimentCount">0</span></strong><p>Open an experiment to manage its nested work.</p></div><input id="experimentSearch" class="search-input" placeholder="Search experiments…"></div><div class="empty-state hidden" id="experimentEmpty"><div class="empty-icon">⚗</div><h2>No Experiments Added Yet</h2><p>Start by adding your first laboratory experiment.</p><button class="btn primary" data-action="new-experiment">＋ Add Your First Experiment</button></div><div class="card-grid" id="experimentList"></div>
+</section>
+
+<section class="page" id="page-modules">
+  <div class="page-banner"><div class="heading-icon purple">▤</div><div class="banner-copy"><h1>Academic Modules &amp; Courses</h1><p>Add modules, manage nested topics, and attach a PDF to each module.</p></div><button class="btn primary" id="addModule">＋ Add Academic Module</button></div>
+  <div class="list-toolbar"><div><strong>Total Course Modules: <span id="moduleCount">0</span></strong><p>Use <b>Open Module</b> for topics and PDF details. Use <b>View PDF</b> to open the uploaded PDF directly.</p></div><input id="moduleSearch" class="search-input" placeholder="Search modules…"></div><div class="empty-state hidden" id="moduleEmpty"><div class="empty-icon purple-text">▤</div><h2>No Academic Modules Yet</h2><p>Add Module 1, Module 2, Module 3, and more.</p><button class="btn primary" data-action="new-module">＋ Add Your First Module</button></div><div class="card-grid" id="moduleList"></div>
+</section>
+
+<section class="page" id="page-tools">
+  <div class="page-banner"><div class="heading-icon green">⌘</div><div class="banner-copy"><h1>Data Science Tools</h1><p>Useful tools for programming, analysis, visualization, machine learning and datasets.</p></div></div><div class="tools-toolbar"><input id="toolSearch" class="search-input" placeholder="Search tools…"><select id="toolCategory" class="search-input"><option>All</option><option>Notebooks</option><option>Programming</option><option>Data Analysis</option><option>Visualization</option><option>Machine Learning</option><option>Datasets</option></select></div><div class="tool-grid" id="toolList"></div>
+</section>
+
+<section class="page" id="page-resources">
+  <div class="page-banner"><div class="heading-icon orange">▥</div><div class="banner-copy"><h1>Learning Resources</h1><p>Manually add, edit, delete and open your own study resources.</p></div><button class="btn primary" id="addResource">＋ Add Resource</button></div>
+  <div class="list-toolbar"><div><strong>Total Resources: <span id="resourceCount">0</span></strong><p>Your resources are saved locally and stay after refresh.</p></div><input id="resourceSearch" class="search-input" placeholder="Search resources…"></div><div class="empty-state hidden" id="resourceEmpty"><div class="empty-icon orange-text">▥</div><h2>No Resources Added Yet</h2><p>Add notes, websites, PDFs, videos or other useful links.</p><button class="btn primary" data-action="new-resource">＋ Add Your First Resource</button></div><div class="card-grid" id="resourceList"></div>
+</section>
+
+<section class="page" id="page-detail">
+  <div class="detail-top"><button class="btn secondary" id="backToParent">← Back</button><div class="detail-actions"><button class="btn secondary" id="editParent">✎ Edit</button><button class="btn danger-outline" id="deleteParent">Delete</button></div></div>
+  <div class="detail-hero"><div class="heading-icon purple" id="detailIcon">▤</div><div><p class="eyebrow" id="detailType">DETAILS</p><h1 id="detailTitle">Item title</h1><p id="detailDescription">Description</p></div></div><div class="detail-content" id="detailContent"></div>
+</section>
+</main>
+<footer class="footer"><div><b>DATA SCIENCE DIGITAL LIBRARY</b><small>Learn · Experiment · Build · Grow</small></div><span>Saved locally in your browser</span></footer>
+</div>
+
+<dialog id="idPreviewDialog" class="modal preview-modal"><div class="modal-header"><div><p class="eyebrow">PREVIEW</p><h2 id="previewTitle">ID Card Preview</h2></div><button class="icon-button" id="closePreview">×</button></div><div id="previewContent" class="preview-content"></div></dialog>
+<dialog id="pdfDialog" class="modal pdf-modal"><div class="modal-header"><div><p class="eyebrow">MODULE DOCUMENT</p><h2 id="pdfTitle">PDF Preview</h2></div><button class="icon-button" id="closePdf">×</button></div><iframe id="pdfFrame" title="Module PDF preview"></iframe></dialog>
+<dialog id="itemDialog" class="modal"><form id="itemForm"><div class="modal-header"><div><p class="eyebrow" id="modalEyebrow">CREATE</p><h2 id="modalTitle">Add item</h2></div><button class="icon-button" id="closeItem" type="button">×</button></div><div id="modalFields" class="modal-fields"></div><div class="modal-actions"><button class="btn secondary" id="cancelItem" type="button">Cancel</button><button class="btn primary" type="submit">Save</button></div></form></dialog>
+<div class="toast" id="toast"></div>
+<script src="script.js"></script>
+</body>
+</html>
